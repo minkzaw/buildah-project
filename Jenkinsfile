@@ -26,7 +26,7 @@ pipeline {
             }
             steps {
                 container('buildah') {
-                    sh 'buildah bud --layers --cache-from $REGISTRY/$CACHE_DIR --cache-to $REGISTRY/$CACHE_DIR' -t $REGISTRY/$IMAGE_NAME:$TAG .'
+                    sh 'buildah bud --layers --cache-from $REGISTRY/$CACHE_DIR --cache-to $REGISTRY/$CACHE_DIR -t $REGISTRY/$IMAGE_NAME:$TAG .'
                 }
             }
             steps {
