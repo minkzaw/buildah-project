@@ -1,25 +1,21 @@
 pipeline {
     agent any
-
     stages {
-        stage ('Print Hello') {
+        stage ('Hello from Jenkins') {
             steps {
-                echo "Hello World!"
+                sh echo 'Hello World'
             }
         }
-        
-        stage('Build Image with Buildah') {
+        stage ('Build with buildah') {
             steps {
-                container('buildah') {
-                    sh 'buildah bud -t my-nginx .'
-                }
-            }
-        }
-
-        stage('List Local Images (Optional)') {
-            steps {
-                container('buildah') {
-                    sh 'buildah images'
+                withCredentials([usernamePassword(
+                    credentialsId: 'bulidah-project',
+                    usernameVariable: 'REGISTRY_USER',
+                    passwordVariable: 'REGISTRY_PASS'
+                )]) {
+                    container('buildah') {
+                        sh 'buildah login -u $REGISTRY_USER -p $REGISTRY_PASS quay.io'
+                    }
                 }
             }
         }
