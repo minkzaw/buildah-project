@@ -1,16 +1,19 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = 'my-nginx'
     }
 
     stages {
+        stage ('Print Hello') {
+            steps {
+                echo "Hello World!"
+            }
+        }
         
         stage('Build Image with Buildah') {
             steps {
-                script {
-                    sh 'buildah bud -t $IMAGE_NAME .'
+                container('buildah') {
+                    sh 'buildah bud -t my-nginx .'
                 }
             }
         }
