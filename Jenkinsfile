@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Hello from Jenkins') {
             steps {
-                sh echo 'Hello World'
+                sh 'echo "Hello World"'
             }
         }
         stage ('Build with buildah') {
