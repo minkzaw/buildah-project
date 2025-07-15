@@ -9,7 +9,7 @@ pipeline {
         stage ('Build with buildah') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: 'bulidah-project',
+                    credentialsId: 'buildah-project',
                     usernameVariable: 'REGISTRY_USER',
                     passwordVariable: 'REGISTRY_PASS'
                 )]) {
