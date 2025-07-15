@@ -1,5 +1,5 @@
 FROM docker.io/library/nginx:alpine
 
-RUN echo Hello
+RUN echo HELLO
 
 EXPOSE 80
