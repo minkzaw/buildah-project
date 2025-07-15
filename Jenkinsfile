@@ -32,7 +32,7 @@ pipeline {
                 }
             }
         }
-        stage ('Build with kaniko') {
+        stage ('Push to Container Registry') {
             steps {
                 container('buildah') {
                     sh 'buildah push $REGISTRY/$IMAGE_NAME:$TAG'
