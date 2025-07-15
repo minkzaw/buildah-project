@@ -12,7 +12,7 @@ pipeline {
                 sh 'echo "Hello World"'
             }
         }
-        stage ('Build with buildah') {
+        stage ('Login Container Registry') {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'buildah-project',
@@ -24,11 +24,15 @@ pipeline {
                     }
                 }
             }
+        }
+        stage ('Build with kaniko') {
             steps {
                 container('buildah') {
                     sh 'buildah bud --layers --cache-from $REGISTRY/$CACHE_DIR --cache-to $REGISTRY/$CACHE_DIR -t $REGISTRY/$IMAGE_NAME:$TAG .'
                 }
             }
+        }
+        stage ('Build with kaniko') {
             steps {
                 container('buildah') {
                     sh 'buildah push $REGISTRY/$IMAGE_NAME:$TAG'
