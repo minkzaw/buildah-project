@@ -18,7 +18,9 @@ pipeline {
 
         stage('List Local Images (Optional)') {
             steps {
-                sh 'buildah images'
+                container('buildah') {
+                    sh 'buildah images'
+                }
             }
         }
     }
