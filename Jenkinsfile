@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-        REGISTRY = 'quay.io',
-        IMAGE_NAME = 'mkzaw/buildah-project',
-        CACHE_DIR = 'mkzaw/buildah-project/cache',
+        REGISTRY = 'quay.io'
+        IMAGE_NAME = 'mkzaw/buildah-project'
+        CACHE_DIR = 'mkzaw/buildah-project/cache'
         TAG = "${BUILD_NUMBER}"
     }
     stages {
